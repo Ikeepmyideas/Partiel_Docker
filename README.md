@@ -5,6 +5,7 @@
 Notre projet annuel vise à informatiser une association solidaire dédiée à la coordination des actions caritatives en faveur des bénéficiaires, avec le soutien des bénévoles et des administrateurs. Pour cela, nous avons élaboré un diagramme d'architecture afin de visualiser la mise en place des différents services nécessaires. Ces services se déclinent en trois principaux volets : le backend, le frontend et la base de données.
 
 ### Diagramme d'Architecture :
+![Diagramme d'Architecture](Docker.png)
 - **Backend** 🖥️: Service responsable du traitement des requêtes serveur. Il utilise Node.js et Express comme technologies principales.
 - **Frontend** 🌐: Interface utilisateur de l'application, développée avec React pour une expérience utilisateur interactive et réactive.
 - **Base de données** 💾: Stockage persistant des données. Nous avons opté pour PostgreSQL en raison de sa robustesse et de sa fiabilité.
