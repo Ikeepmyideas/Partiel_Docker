@@ -1,0 +1,54 @@
+version: '1.0'
+
+networks:
+  my_app_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1
+
+services:
+  db:
+    build: ./db
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_DATABASE: au_temps_donne
+      MYSQL_ROOT_PASSWORD: "root"
+    networks:
+      - my_app_network
+    volumes:
+      - ./db_storage:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  backend:
+    depends_on:
+      - db
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    environment:
+      PORT: 8000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: au_temps_donne
+    networks:
+      - my_app_network
+    ports:
+      - "8000:8000"
+    restart: always
+
+  frontend:
+    depends_on:
+      - backend
+    build:
+      context: ./frontend-autemps-donne
+      dockerfile: Dockerfile
+    networks:
+      - my_app_network
+    ports:
+      - "3000:3000"

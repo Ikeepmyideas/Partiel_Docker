@@ -1,0 +1,83 @@
+/* article.css */
+.bodyarticle{
+    background-color: aliceblue;
+    border-radius: 20px;
+    margin: 100px;
+
+    
+.dashboard-button {
+    /* Your existing button styles */
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .dashboard-button {
+    background-color: #ec669e; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .dashboard-button:hover {
+    background-color: #db5e92; 
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+    animation: shake 0.1s infinite alternate; 
+  }
+  
+  @keyframes shake {
+    0% {
+      transform: translateX(-5px); 
+    }
+    100% {
+      transform: translateX(5px); 
+    }
+  }
+  
+  
+.article-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .article-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+}
