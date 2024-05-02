@@ -1,43 +1,31 @@
-version: '1.0'
-
-networks:
-  my_app_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 127.0.0.0/16
-          gateway: 127.0.0.1
+version: '3'
 
 services:
   db:
     image: ghcr.io/ikeepmyideas/db
     restart: always
     environment:
-      MYSQL_DATABASE: au_temps_donne
       MYSQL_ROOT_PASSWORD: "root"
-    networks:
-      - my_app_network
     volumes:
-      - db_storage:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
   backend:
-    depends_on:
-      - db
     image: ghcr.io/ikeepmyideas/backend
     environment:
-      PORT: 8000
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: au_temps_donne
-    networks:
-      - my_app_network
+      NODE_ENV: production
+    ports:
+      - "8000:8000"
     restart: always
+    depends_on:
+      - db
 
   frontend:
-    depends_on:
-      - backend
-    image: ghcr.io/ikeepmyideas/frontend
-    networks:
-      - my_app_network
+    image: ghcr.io/ikeepmyideas/frontend 
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    restart: always
+
+volumes:
+  db_data:
