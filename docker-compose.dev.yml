@@ -5,13 +5,13 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 127.0.0.0/16
-          gateway: 127.0.0.1
+        - subnet: 00.00.00.00/16       //Remplacer par de fausses adresses IP pour des raisons de sécurité
+          gateway: 00.00.0.1           //Remplacer par de fausses adresses IP pour des raisons de sécurité
 
 services:
   db:
     build: ./db
-    container_name: db
+    image: ghcr.io/ikeepmyideas/db
     restart: always
     environment:
       MYSQL_DATABASE: au_temps_donne
@@ -26,9 +26,7 @@ services:
   backend:
     depends_on:
       - db
-    build:
-      context: ./backend/api
-      dockerfile: Dockerfile
+    image: ghcr.io/ikeepmyideas/backend
     environment:
       PORT: 8000
       DB_HOST: db
@@ -45,9 +43,7 @@ services:
   frontend:
     depends_on:
       - backend
-    build:
-      context: ./frontend-autemps-donne
-      dockerfile: Dockerfile
+    image: ghcr.io/ikeepmyideas/frontend
     networks:
       - my_app_network
     ports:
